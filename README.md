@@ -1,6 +1,6 @@
-# CodeBharat
+# YakeeN
 
-CodeBharat is a web application built with React, Vite, and Firebase. It appears to be a platform for users to post and discover opportunities.
+YakeeN is a web application built with React, Vite, and Firebase. It appears to be a platform for users to post and discover opportunities.
 
 ## Features
 
