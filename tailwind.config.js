@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import plugin from 'tailwindcss/plugin';
+
 export default {
   content: [
     "./index.html",
@@ -36,5 +38,26 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities }) {
+      addUtilities({
+        '.glass': {
+          'background-color': 'rgba(255, 255, 255, 0.7)',
+          'backdrop-filter': 'blur(1rem)',
+          'border': '1px solid black',
+          'box-shadow': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        },
+        '.glass-card': {
+          'background-color': 'rgba(255, 255, 255, 0.8)',
+          'backdrop-filter': 'blur(0.5rem)',
+          'border': '1px solid black',
+          'box-shadow': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+          '&:hover': {
+            'box-shadow': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+          },
+          'transition': 'all 0.3s ease-in-out',
+        },
+      })
+    })
+  ],
 }

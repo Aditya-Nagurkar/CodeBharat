@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { getOpportunities } from '../services/db';
 import { getUserLocation, getCoordinatesFromAddress } from '../services/location';
 
-const OpportunityListPage = () => {
+const OpportunityList = () => {
     const navigate = useNavigate();
     const [opportunities, setOpportunities] = useState([]);
     const [filteredOpportunities, setFilteredOpportunities] = useState([]);
@@ -20,6 +20,11 @@ const OpportunityListPage = () => {
     });
 
     useEffect(() => {
+        const categoryParam = searchParams.get('category');
+        if (categoryParam) {
+            setFilters(prevFilters => ({ ...prevFilters, category: categoryParam }));
+        }
+
         const fetchData = async () => {
             try {
                 setLoading(true);
@@ -165,7 +170,7 @@ const OpportunityListPage = () => {
                 <div className="relative">
                     <button
                         onClick={() => setShowFilters(!showFilters)}
-                        className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-gray-700 hover:bg-white/90 hover:shadow-md transition-all border border-white/20"
+                        className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-gray-700 hover:bg-white/90 hover:shadow-md transition-all"
                     >
                         <Filter className="w-4 h-4" />
                         Filters
@@ -178,7 +183,7 @@ const OpportunityListPage = () => {
 
                     {/* Filter Dropdown */}
                     {showFilters && (
-                        <div className="absolute right-0 mt-2 w-80 glass-card rounded-xl shadow-xl border border-white/20 p-6 z-[100] animate-fadeIn">
+                        <div className="absolute right-0 mt-2 w-80 glass-card rounded-xl shadow-xl p-6 z-[100] animate-fadeIn">
                             <div className="flex justify-between items-center mb-4">
                                 <h3 className="font-bold text-gray-900">Filters</h3>
                                 <button onClick={() => setShowFilters(false)} className="text-gray-400 hover:text-gray-600">
@@ -254,7 +259,7 @@ const OpportunityListPage = () => {
                     <div
                         key={opp.id}
                         onClick={() => navigate(`/opportunity/${opp.id}`)}
-                        className="glass-card p-6 rounded-2xl cursor-pointer group hover:shadow-2xl transition-all duration-300 animate-fadeIn border border-white/20"
+                        className="glass-card p-6 rounded-2xl cursor-pointer group hover:shadow-2xl transition-all duration-300 animate-fadeIn border border-black"
                         style={{ animationDelay: `${index * 0.05}s` }}
                     >
                         {/* Category Badge */}
@@ -314,7 +319,7 @@ const OpportunityListPage = () => {
             </div>
 
             {filteredOpportunities.length === 0 && !loading && (
-                <div className="glass-card rounded-2xl p-12 text-center border border-white/20">
+                <div className="glass-card rounded-2xl p-12 text-center">
                     <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <MapPin className="w-10 h-10 text-primary" />
                     </div>
@@ -332,4 +337,4 @@ const OpportunityListPage = () => {
     );
 };
 
-export default OpportunityListPage;
+export default OpportunityList;

@@ -81,7 +81,7 @@ const HomePage = () => {
                         Backed by community trust.
                     </p>
 
-                    <form onSubmit={handleSearch} className="max-w-2xl mx-auto bg-white/80 backdrop-blur-xl rounded-2xl p-2 flex shadow-xl border border-white/50 animate-slideUp hover:shadow-2xl transition-shadow duration-300" style={{ animationDelay: '0.2s' }}>
+                    <form onSubmit={handleSearch} className="max-w-2xl mx-auto bg-white/80 backdrop-blur-xl rounded-2xl p-2 flex shadow-xl animate-slideUp hover:shadow-2xl transition-shadow duration-300" style={{ animationDelay: '0.2s' }}>
                         <div className="flex-1 flex items-center px-4 border-r border-gray-200/50">
                             <MapPin className="w-5 h-5 text-primary mr-3" />
                             <input
@@ -122,8 +122,8 @@ const HomePage = () => {
                         {categories.map((cat, index) => (
                             <div
                                 key={cat.id}
-                                onClick={() => navigate('/opportunities')}
-                                className="glass-card p-6 rounded-2xl flex flex-col items-center cursor-pointer group animate-fadeIn"
+                                onClick={() => navigate(`/opportunities?category=${cat.id}`)}
+                                className="glass-card p-6 rounded-2xl flex flex-col items-center cursor-.pointer group animate-fadeIn border border-black"
                                 style={{ animationDelay: `${index * 0.1}s` }}
                             >
                                 <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-4 ${cat.color} bg-opacity-20 group-hover:scale-110 transition-transform duration-300 shadow-inner`}>
@@ -131,9 +131,7 @@ const HomePage = () => {
                                 </div>
                                 <h3 className="font-bold text-gray-900 group-hover:text-primary transition-colors">{cat.name}</h3>
                                 <p className="text-xs text-gray-500 mt-1">
-                                    {categoryCounts[cat.id] > 0
-                                        ? `${categoryCounts[cat.id]} Active`
-                                        : 'No listings yet'}
+                                    {categoryCounts[cat.id]} Active
                                 </p>
                             </div>
                         ))}

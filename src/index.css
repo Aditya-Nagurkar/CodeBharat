@@ -57,14 +57,6 @@ body {
   min-height: 100vh;
 }
 
-.glass {
-  @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-lg;
-}
-
-.glass-card {
-  @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-sm hover:shadow-xl transition-all duration-300;
-}
-
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600;
 }

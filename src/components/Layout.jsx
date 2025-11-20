@@ -1,7 +1,9 @@
+// This is a no-op change to force recompile
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, User, LogOut, FileText, PlusCircle, LogIn } from 'lucide-react';
 import { onAuthChange, getUserProfile, logOut } from '../services/auth';
+import AnimatedBackground from './AnimatedBackground';
 
 const Layout = () => {
     const location = useLocation();
@@ -40,12 +42,9 @@ const Layout = () => {
 
     return (
         <div className="min-h-screen flex flex-col font-sans relative overflow-hidden">
-            <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
-                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-200/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '0s' }}></div>
-                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-200/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
-            </div>
+            <AnimatedBackground />
 
-            <header className="sticky top-0 z-50 glass border-b border-white/20">
+            <header className="sticky top-0 z-50 glass rounded-3xl mx-4 mt-4 border border-black">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center h-16">
                         <div className="flex-shrink-0 flex items-center gap-2">
@@ -59,7 +58,7 @@ const Layout = () => {
                             <Link to="/" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive('/')}`}>
                                 Home
                             </Link>
-                            <Link to="/opportunities" className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive('/opportunities')}`}>
+                            <Link to="/opportunities" className={`px-4 py-2 rounded-lg text-sm font--medium transition-all duration-200 ${isActive('/opportunities')}`}>
                                 Opportunities
                             </Link>
                             <Link to="/post" className="ml-4 px-4 py-2 rounded-lg text-sm font-medium bg-gradient-to-r from-secondary to-orange-600 text-white shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 flex items-center gap-2">
@@ -137,18 +136,18 @@ const Layout = () => {
                 </div>
             </main>
 
-            <footer className="bg-white/80 backdrop-blur-md border-t border-gray-200 mt-auto">
+            <footer className="bg-white/80 backdrop-blur-md border border-gray-200 mt-auto">
                 <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                         <div className="text-center md:text-left">
                             <p className="text-sm text-gray-500">
-                                &copy; 2024 YakeeN. Trust That's Near.
+                                &copy; 2025 YakeeN. Trust That's Near.
                             </p>
                         </div>
                         <div className="flex space-x-6">
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors">Privacy</a>
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors">Terms</a>
-                            <a href="#" className="text-gray-400 hover:text-primary transition-colors">Contact</a>
+                            <a href="/privacy" className="text-gray-400 hover:text-primary transition-colors">Privacy</a>
+                            <a href="/terms" className="text-gray-400 hover:text-primary transition-colors">Terms</a>
+                            <a href="mailto:contact@yakeen.com" className="text-gray-400 hover:text-primary transition-colors">Contact</a>
                         </div>
                     </div>
                 </div>
